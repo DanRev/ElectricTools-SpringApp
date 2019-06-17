@@ -6,4 +6,6 @@ import com.spring.electric.tools.models.entity.Cliente;
 
 public interface IClienteDAO extends CrudRepository<Cliente, Long> {
 
+  Cliente findByCedula(String cedula);
+
 }
