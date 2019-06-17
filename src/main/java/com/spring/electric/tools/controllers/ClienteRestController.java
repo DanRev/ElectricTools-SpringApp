@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,6 +40,7 @@ public class ClienteRestController {
 	 * @param id => cliente a mostrar
 	 * @return
 	 */
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping("/clientes/{id}")
 	public ResponseEntity<?> show(@PathVariable Long id) {
 		Cliente cliente = null;
@@ -63,6 +65,7 @@ public class ClienteRestController {
 	 * @param cliente => cliente a insertar en la BD
 	 * @return
 	 */
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/clientes")
 	public ResponseEntity<?> create(@RequestBody Cliente cliente) {
 	
@@ -87,6 +90,7 @@ public class ClienteRestController {
 	 * @param id => id del cliente a actualizar 
 	 * @return
 	 */
+	@Secured("ROLE_ADMIN")
 	@PutMapping("/clientes/{id}")
 	public ResponseEntity<?> update(@RequestBody Cliente cliente, @PathVariable Long id) {
 		Cliente clienteActual = clienteService.findById(id);
@@ -122,6 +126,7 @@ public class ClienteRestController {
 	 * @param id => id del cliente a borrar
 	 * @return
 	 */
+	@Secured("ROLE_ADMIN")
 	@DeleteMapping("/clientes/{id}")
 	public ResponseEntity<?> delete (@PathVariable Long id) {
 		Map<String, Object> response = new HashMap<>();		

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,7 @@ import com.spring.electric.tools.models.services.OrdenServiceImpl;
 @RestController
 @RequestMapping("/api")
 public class OrdenRestController {
+	
 	@Autowired
 	private OrdenServiceImpl ordenService;
 
@@ -40,6 +42,7 @@ public class OrdenRestController {
 	 * @param id => Orden a mostrar
 	 * @return
 	 */
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping("/ordenes/{id}")
 	public ResponseEntity<?> show(@PathVariable Long id) {
 		Orden orden = null;
@@ -65,6 +68,7 @@ public class OrdenRestController {
 	 * @param orden => Orden a insertar en la BD
 	 * @return
 	 */
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/ordenes")
 	public ResponseEntity<?> create(@RequestBody Orden orden) {
 
@@ -93,6 +97,7 @@ public class OrdenRestController {
 	 * @param id    => id de la orden a actualizar
 	 * @return
 	 */
+	@Secured("ROLE_ADMIN")
 	@PutMapping("/ordenes/{id}")
 	public ResponseEntity<?> update(@RequestBody Orden orden, @PathVariable Long id) {
 		Orden ordenActual = ordenService.findById(id);
@@ -135,6 +140,7 @@ public class OrdenRestController {
 	 * @param id => id de la orden a borrar
 	 * @return
 	 */
+	@Secured("ROLE_ADMIN")
 	@DeleteMapping("/ordenes/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id) {
 		Map<String, Object> response = new HashMap<>();

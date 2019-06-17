@@ -21,11 +21,18 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/clientes", "/api/clientes/page/**","/api/ajustes","/api/ajustes/page/**","/api/ordenes","/api/ordenes/page/**").permitAll()
+		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/clientes","/api/ajustes","/api/ordenes","/api/contabilidad","/api/arreglos","/api/repuestos").permitAll()
 		/*.antMatchers(HttpMethod.GET, "/api/clientes/{id}").hasAnyRole("USER", "ADMIN")
-		.antMatchers(HttpMethod.POST, "/api/clientes/upload").hasAnyRole("USER", "ADMIN")
 		.antMatchers(HttpMethod.POST, "/api/clientes").hasRole("ADMIN")
-		.antMatchers("/api/clientes/**").hasRole("ADMIN")*/
+		.antMatchers("/api/clientes/**").hasRole("ADMIN")
+		.antMatchers(HttpMethod.GET, "/api/ordenes/{id}").hasAnyRole("USER", "ADMIN")
+		.antMatchers(HttpMethod.POST, "/api/ordenes").hasRole("ADMIN")
+		.antMatchers("/api/ordenes/**").hasRole("ADMIN")
+		.antMatchers(HttpMethod.POST, "/api/contabilidad/{fechaEntrada}/{fechaSalida}").hasRole("ADMIN")
+		.antMatchers(HttpMethod.POST, "/api/arreglos/{fechaEntrada}/{fechaSalida}").hasRole("ADMIN")
+		.antMatchers(HttpMethod.POST, "/api/repuestos/{fechaEntrada}/{fechaSalida}").hasRole("ADMIN")
+		.antMatchers(HttpMethod.GET, "/api/ajustes").hasAnyRole("USER", "ADMIN")
+		.antMatchers(HttpMethod.POST, "/api/ajustes").hasRole("ADMIN")*/
 		.anyRequest().authenticated()
 		.and().cors().configurationSource(corsConfigurationSource());
 	}

@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +29,7 @@ public class ContabilidadRestController {
 	 * 
 	 * @return
 	 */
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping("/contabilidad/{fechaEntrada}/{fechaSalida}")
 	public List<Orden> getContabilidad(@PathVariable String fechaEntrada, @PathVariable String fechaSalida) {
 	
@@ -41,6 +43,7 @@ public class ContabilidadRestController {
 	 * 
 	 * @return
 	 */
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping("/arreglos/{fechaEntrada}/{fechaSalida}")
 	public Integer getValorArreglosTotal(@PathVariable String fechaEntrada, @PathVariable String fechaSalida) {
 
@@ -53,6 +56,7 @@ public class ContabilidadRestController {
 	 * 
 	 * @return
 	 */
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping("/repuestos/{fechaEntrada}/{fechaSalida}")
 	public Integer getValorRepuestosTotal(@PathVariable String fechaEntrada, @PathVariable String fechaSalida) {
 
