@@ -23,7 +23,7 @@ import com.spring.electric.tools.models.entity.Orden;
 import com.spring.electric.tools.models.enums.OrdenEstado;
 import com.spring.electric.tools.models.services.OrdenServiceImpl;
 
-@CrossOrigin(origins = { "http://localhost:4200" })
+@CrossOrigin(origins = { "http://localhost:4200"})
 @RestController
 @RequestMapping("/api")
 public class OrdenRestController {

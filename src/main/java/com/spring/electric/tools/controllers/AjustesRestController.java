@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.spring.electric.tools.models.entity.Ajustes;
 import com.spring.electric.tools.models.services.AjustesServiceImpl;
 
-@CrossOrigin(origins = { "http://localhost:4200" })
+@CrossOrigin(origins = { "http://localhost:4200"})
 @RestController
 @RequestMapping("/api")
 public class AjustesRestController {
