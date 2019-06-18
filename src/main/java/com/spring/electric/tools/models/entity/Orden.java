@@ -43,7 +43,7 @@ public class Orden implements Serializable{
 	private String observaciones;
 	
 	@NotNull(message="cliente vacio")
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL) // Genera un proxy hacia la clase cliente
+	@ManyToOne(fetch = FetchType.LAZY) // Genera un proxy hacia la clase cliente
 	@JoinColumn(name = "CLIENTE_ID")
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" }) // Se ignoran en el JSON los atributos generados
 	private Cliente cliente;										// por el proxy debido a LAZY	
